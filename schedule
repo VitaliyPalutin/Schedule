@@ -1,0 +1,45 @@
+```python
+def print_schedule(schedule):
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    for day in days:
+        print(f"{day}:")
+        if day in schedule and schedule[day]:
+            for event in schedule[day]:
+                print(f"  - {event}")
+        else:
+            print("  - No events scheduled")
+        print()
+
+def add_event(schedule, day, event):
+    if day not in schedule:
+        schedule[day] = []
+    schedule[day].append(event)
+
+def main():
+    schedule = {}
+
+    while True:
+        print("\nMenu:")
+        print("1. Add event")
+        print("2. Show schedule")
+        print("3. Exit")
+        choice = input("Choose an option (1/2/3): ")
+
+        if choice == '1':
+            day = input("Enter the day of the week (Monday, Tuesday, ...): ")
+            if day.capitalize() not in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]:
+                print("Invalid day of the week. Please try again.")
+                continue
+            event = input("Enter the event: ")
+            add_event(schedule, day.capitalize(), event)
+        elif choice == '2':
+            print_schedule(schedule)
+        elif choice == '3':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please select 1, 2, or 3.")
+
+if __name__ == "__main__":
+    main()
+```
